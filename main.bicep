@@ -9,7 +9,7 @@ param storagePrefix string
   'Standard_GRS'
   'Standard_RAGRS'
 ])
-param storageSKU string = 'Standard_LRS'
+param storageSKU string = 'Standard_GRS'
 
 @description('The Azure region for the resources.')
 param location string = resourceGroup().location
@@ -22,6 +22,9 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2025-08-01' = {
   kind: 'StorageV2'
   sku: {
     name: storageSKU
+  }
+  tags: {
+    environment: 'production'
   }
   properties: {
     supportsHttpsTrafficOnly: true
