@@ -9,10 +9,13 @@ param storagePrefix string
   'Standard_GRS'
   'Standard_RAGRS'
 ])
-param storageSKU string = 'Standard_GRS'
+param storageSKU string = 'Standard_LRS'
 
 @description('The Azure region for the resources.')
 param location string = resourceGroup().location
+
+@description('Environment tag for the deployment.')
+param environment string = 'production'
 
 var uniqueStorageName = '${storagePrefix}${uniqueString(resourceGroup().id)}'
 
@@ -24,7 +27,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2025-08-01' = {
     name: storageSKU
   }
   tags: {
-    environment: 'production'
+    environment: environment
   }
   properties: {
     supportsHttpsTrafficOnly: true
