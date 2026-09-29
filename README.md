@@ -17,7 +17,7 @@ push to main
  (bicepprd, GRS)       azure/login, then azure/arm-deploy
 ```
 
-The workflow lives in `.github/workflows/deploy.yml`. The production job declares `needs: deploy-staging`, so a failed staging deployment stops the release.
+The workflow lives in `.github/workflows/deploy.yml`. The production job declares `needs: deploy-staging`, so a failed staging deployment stops the release. Pushes that only change Markdown files skip the deployment, and the workflow can also be started by hand from the Actions tab.
 
 ## What gets deployed
 
